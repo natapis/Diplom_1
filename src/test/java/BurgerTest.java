@@ -10,11 +10,17 @@ public class BurgerTest {
 
     private Ingredient ingredient = new Ingredient(IngredientType.FILLING,"Test", 203);
     private Ingredient ingredientTwo = new Ingredient(IngredientType.SAUCE,"Test2", 209);
+    private Ingredient ingredientTest;
     private Bun bun = new Bun("TestBun", 567);
     @Test
     public void addIngredientTest(){
+        int numberIngredient = 5;
         Burger burger = new Burger();
-        burger.addIngredient(ingredient);
+        for (int i=0; i <= numberIngredient; i++){
+            ingredientTest = new Ingredient(IngredientType.FILLING,"Test" + i, 23+i);
+            burger.addIngredient(ingredientTest);
+        }
+ //       burger.addIngredient(ingredient);
  //       IngredientType actualType = burger.ingredients.get(0).getType();
  //       String actualName = burger.ingredients.get(0).getName();
  //       float actualPrice = burger.ingredients.get(0).getPrice();
@@ -22,7 +28,9 @@ public class BurgerTest {
  //       Assert.assertEquals("Не добавилось имя", "Test", actualName);
 //        Assert.assertEquals(IngredientType.FILLING, actualType);
         Assert.assertEquals(false, burger.ingredients.isEmpty());
-        Assert.assertEquals(true,burger.ingredients.contains(ingredient));
+        Assert.assertEquals(true,burger.ingredients.contains(ingredientTest));
+        Assert.assertEquals(numberIngredient, burger.ingredients.indexOf(ingredientTest));
+        Assert.assertEquals(numberIngredient+1, burger.ingredients.size());
     }
 
     @Test
@@ -49,15 +57,22 @@ public class BurgerTest {
 
     @Test
     public void moveIngredientTest(){
+        int index = 1;
+        int indexNew = 3;
         Burger burger = new Burger();
-        burger.addIngredient(ingredient);
-        burger.addIngredient(ingredientTwo);
+        for (int i=0; i <= indexNew; i++){
+            ingredientTest = new Ingredient(IngredientType.FILLING,"Test" + i, 23+i);
+            burger.addIngredient(ingredientTest);
+        }
+ //       burger.addIngredient(ingredient);
+ //       burger.addIngredient(ingredientTwo);
         int actualSize = burger.ingredients.size();
-        burger.moveIngredient(0,1);
-        int actualIndexOne = burger.ingredients.indexOf(ingredient);
-        int actualIndexTwo = burger.ingredients.indexOf(ingredientTwo);
-        Assert.assertEquals(1, actualIndexOne, 0);
-        Assert.assertEquals(0, actualIndexTwo, 0);
-        Assert.assertEquals(2, actualSize, 0);
+        ingredientTwo = burger.ingredients.get(index);
+        burger.moveIngredient(index,indexNew);
+        int actualIndex = burger.ingredients.indexOf(ingredientTwo);
+//        int actualIndexTwo = burger.ingredients.indexOf(ingredientTwo);
+        Assert.assertEquals(indexNew, actualIndex, 0);
+ //       Assert.assertEquals(0, actualIndexTwo, 0);
+        Assert.assertEquals(indexNew+1, actualSize, 0);
     }
 }
