@@ -7,32 +7,29 @@ import praktikum.Burger;
 
 @RunWith(Parameterized.class)
 public class BurgerSetBunsParametersTest {
-  //  private float price;
-  //  private String name;
     private Bun bunOne;
-    private float expectedPrice;
-    private String expectedName;
-    public BurgerSetBunsParametersTest(Bun bun, String expectedName, float expectedPrice){
-//        this.name = name;
-//        this.price = price;
+    boolean isSetBun;
+
+    public BurgerSetBunsParametersTest(Bun bun, boolean isSetBun) {
         this.bunOne = bun;
-        this.expectedName = expectedName;
-        this.expectedPrice = expectedPrice;
+        this.isSetBun = isSetBun;
     }
+
     @Parameterized.Parameters
-    public static Object[][] setBun(){
+    public static Object[][] setBun() {
         return new Object[][]{
-                {new Bun("NameOne", 123), "NameOne", 123}
+                {new Bun("NameOne", 123), true}
         };
     }
+
     @Test
-    public void setBunsTest(){
+    public void setBunsTest() {
         Burger burger = new Burger();
         burger.setBuns(bunOne);
         String actualName = burger.bun.getName();
         float actualPrice = burger.bun.getPrice();
-        Assert.assertEquals(expectedPrice, actualPrice,0);
-        Assert.assertEquals(expectedName, actualName);
+        boolean isActualSetBun = ((bunOne.getName().equals(actualName)) & (bunOne.getPrice() == actualPrice));
+        Assert.assertEquals(isSetBun, isActualSetBun);
     }
 
 }
