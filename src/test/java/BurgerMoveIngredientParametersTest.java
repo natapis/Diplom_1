@@ -5,7 +5,7 @@ import org.junit.runners.Parameterized;
 import praktikum.Burger;
 import praktikum.Ingredient;
 import praktikum.IngredientType;
-
+// Понять нужны ли тесты для массива с нулевым размером, или можно ли удалить элемент с индексом большего размера
 @RunWith(Parameterized.class)
 public class BurgerMoveIngredientParametersTest {
     private int sizeIngredientMassive;
@@ -24,18 +24,21 @@ public class BurgerMoveIngredientParametersTest {
     public static Object[][] burgerMoveIngredient() {
         return new Object[][]{
                 {1, 0, 1, false},
+                {1, 0, 0, true},
                 {2, 0, 1, true},
                 {2, 1, 0, true},
-                {2, 1, 1, true},
+                //               {2, 1, 1, true},
                 {0, 0, 1, false},
                 {3, 0, 2, true},
                 {3, 2, 0, true},
+                {5, 1, 3, true},
+                {5, 3, 1, true},
         };
     }
 
     @Test
     public void moveIngredientTest() {
-        if (sizeIngredientMassive > 1) {
+        if ((sizeIngredientMassive > 1) || ((sizeIngredientMassive == 1) & (index == newIndex))) {
             Burger burger = new Burger();
             for (int i = 0; i <= sizeIngredientMassive - 1; i++) {
                 Ingredient ingredientTest = new Ingredient(IngredientType.FILLING, "Test" + i, 23 + i);
@@ -45,11 +48,12 @@ public class BurgerMoveIngredientParametersTest {
             Ingredient ingredient = burger.ingredients.get(index);
             burger.moveIngredient(index, newIndex);
             int actualIndex = burger.ingredients.indexOf(ingredient);
-            isMove = ((newIndex == actualIndex) && (sizeIngredientMassive == actualSize));
-            Assert.assertEquals("Индексы не совпадают", isMove, true);
+            boolean isActualMove = ((newIndex == actualIndex) && (sizeIngredientMassive == actualSize));
+            Assert.assertEquals("Индексы не совпадают", isMove, isActualMove);
         } else {
             System.out.println("Move impossible");
-            isMove = false;
+            boolean isActualMove = false;
+            Assert.assertEquals("Индексы не совпадают", isMove, isActualMove);
         }
     }
 }
