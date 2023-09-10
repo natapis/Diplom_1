@@ -3,6 +3,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import praktikum.Burger;
+import praktikum.Database;
 import praktikum.Ingredient;
 import praktikum.IngredientType;
 // Понять нужны ли тесты для массива с нулевым размером, или можно ли удалить элемент с индексом большего размера
@@ -40,8 +41,9 @@ public class BurgerMoveIngredientParametersTest {
     public void moveIngredientTest() {
         if ((sizeIngredientMassive > 1) || ((sizeIngredientMassive == 1) & (index == newIndex))) {
             Burger burger = new Burger();
+            Database data = new Database();
             for (int i = 0; i <= sizeIngredientMassive - 1; i++) {
-                Ingredient ingredientTest = new Ingredient(IngredientType.FILLING, "Test" + i, 23 + i);
+                Ingredient ingredientTest = data.availableIngredients().get(i);
                 burger.addIngredient(ingredientTest);
             }
             int actualSize = burger.ingredients.size();
