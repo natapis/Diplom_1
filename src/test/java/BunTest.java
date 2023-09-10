@@ -3,8 +3,8 @@ import org.junit.Test;
 import praktikum.Bun;
 
 public class BunTest {
-    private final String NAME = "Burger";
-    private final float PRICE = 12;
+    private final String NAME = "green bun";
+    private final float PRICE = 1500;
 
     @Test
     public void getNameTest() {
