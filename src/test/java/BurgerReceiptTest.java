@@ -9,6 +9,7 @@ import praktikum.IngredientType;
 
 import java.util.Arrays;
 import java.util.List;
+
 @RunWith(Parameterized.class)
 public class BurgerReceiptTest {
     private final Bun bun;
@@ -26,7 +27,7 @@ public class BurgerReceiptTest {
         return new Object[][]{
                 {new Bun("black bun", 100),
                         Arrays.asList(),
-                        String.format("(==== %s ====)%n(==== %s ====)%n%nPrice: %s%n", "black bun","black bun", "200,000000")},
+                        String.format("(==== %s ====)%n(==== %s ====)%n%nPrice: %s%n", "black bun", "black bun", "200,000000")},
                 {new Bun("white bun", 200),
                         Arrays.asList(new Ingredient(IngredientType.SAUCE, "hot sauce", 100)),
                         String.format("(==== %s ====)%n= %s =%n(==== %s ====)%n%nPrice: %s%n", "white bun", "sauce hot sauce", "white bun", "500,000000")},

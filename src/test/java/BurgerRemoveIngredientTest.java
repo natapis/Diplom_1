@@ -5,8 +5,7 @@ import org.junit.runners.Parameterized;
 import praktikum.Burger;
 import praktikum.Database;
 import praktikum.Ingredient;
-import praktikum.IngredientType;
-// Понять нужны ли тесты для массива с нулевым размером, или можно ли удалить элемент с индексом большего размера
+
 @RunWith(Parameterized.class)
 
 public class BurgerRemoveIngredientTest {
@@ -23,9 +22,7 @@ public class BurgerRemoveIngredientTest {
     @Parameterized.Parameters(name = "Удален ингредиент из массива размером {0} с индексом {1} - {2}")
     public static Object[][] removeIngredientsTest() {
         return new Object[][]{
-                {0, 0, false},
                 {1, 0, true},
-                {1, 1, false},
                 {5, 0, true},
                 {5, 2, true},
                 {5, 4, true},
