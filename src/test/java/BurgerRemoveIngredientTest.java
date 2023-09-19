@@ -9,23 +9,22 @@ import praktikum.Ingredient;
 @RunWith(Parameterized.class)
 
 public class BurgerRemoveIngredientTest {
-    int sizeIngredientMassive;
-    int index;
-    boolean isRemove;
+    private int sizeIngredientMassive;
+    private int index;
+    private final boolean IS_REMOVE = true;
 
-    public BurgerRemoveIngredientTest(int size, int index, boolean isRemove) {
+    public BurgerRemoveIngredientTest(int size, int index) {
         this.sizeIngredientMassive = size;
-        this.isRemove = isRemove;
         this.index = index;
     }
 
     @Parameterized.Parameters(name = "Удален ингредиент из массива размером {0} с индексом {1} - {2}")
     public static Object[][] removeIngredientsTest() {
         return new Object[][]{
-                {1, 0, true},
-                {5, 0, true},
-                {5, 2, true},
-                {5, 4, true},
+                {1, 0},
+                {5, 0},
+                {5, 2},
+                {5, 4},
         };
     }
 
@@ -39,6 +38,6 @@ public class BurgerRemoveIngredientTest {
         }
         burger.removeIngredient(index);
         boolean isActualRemove = (sizeIngredientMassive - 1 == burger.ingredients.size());
-        Assert.assertEquals("size massive different", isRemove, isActualRemove);
+        Assert.assertEquals("size massive different", IS_REMOVE, isActualRemove);
     }
 }
