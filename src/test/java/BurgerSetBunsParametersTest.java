@@ -8,17 +8,16 @@ import praktikum.Burger;
 @RunWith(Parameterized.class)
 public class BurgerSetBunsParametersTest {
     private Bun bunOne;
-    boolean isSetBun;
+    private final boolean IS_SET_BUN = true;
 
-    public BurgerSetBunsParametersTest(Bun bun, boolean isSetBun) {
+    public BurgerSetBunsParametersTest(Bun bun) {
         this.bunOne = bun;
-        this.isSetBun = isSetBun;
     }
 
     @Parameterized.Parameters
     public static Object[][] setBun() {
         return new Object[][]{
-                {new Bun("NameOne", 123), true}
+                {new Bun("NameOne", 123)}
         };
     }
 
@@ -29,7 +28,7 @@ public class BurgerSetBunsParametersTest {
         String actualName = burger.bun.getName();
         float actualPrice = burger.bun.getPrice();
         boolean isActualSetBun = ((bunOne.getName().equals(actualName)) & (bunOne.getPrice() == actualPrice));
-        Assert.assertEquals(isSetBun, isActualSetBun);
+        Assert.assertEquals(IS_SET_BUN, isActualSetBun);
     }
 
 }
