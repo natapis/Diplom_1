@@ -11,25 +11,24 @@ public class BurgerMoveIngredientParametersTest {
     private int sizeIngredientMassive;
     private int index;
     private int newIndex;
-    boolean isMove;
+    private final boolean IS_MOVE = true;
 
-    public BurgerMoveIngredientParametersTest(int sizeOne, int index, int newIndex, boolean isMove) {
+    public BurgerMoveIngredientParametersTest(int sizeOne, int index, int newIndex) {
         this.sizeIngredientMassive = sizeOne;
         this.index = index;
         this.newIndex = newIndex;
-        this.isMove = isMove;
     }
 
-    @Parameterized.Parameters(name = "Перемещение в массиве размером {0} c {1}-го на {2}-е место = {3}")
+    @Parameterized.Parameters(name = "Перемещение в массиве размером {0} c {1}-го на {2}-е место")
     public static Object[][] burgerMoveIngredient() {
         return new Object[][]{
-                {1, 0, 0, true},
-                {2, 0, 1, true},
-                {2, 1, 0, true},
-                {3, 0, 2, true},
-                {3, 2, 0, true},
-                {5, 1, 3, true},
-                {5, 3, 1, true},
+                {1, 0, 0},
+                {2, 0, 1},
+                {2, 1, 0},
+                {3, 0, 2},
+                {3, 2, 0},
+                {5, 1, 3},
+                {5, 3, 1},
         };
     }
 
@@ -47,11 +46,11 @@ public class BurgerMoveIngredientParametersTest {
             burger.moveIngredient(index, newIndex);
             int actualIndex = burger.ingredients.indexOf(ingredient);
             boolean isActualMove = ((newIndex == actualIndex) && (sizeIngredientMassive == actualSize));
-            Assert.assertEquals("Индексы не совпадают", isMove, isActualMove);
+            Assert.assertEquals("Индексы не совпадают", IS_MOVE, isActualMove);
         } else {
             System.out.println("Move impossible");
             boolean isActualMove = false;
-            Assert.assertEquals("Индексы не совпадают", isMove, isActualMove);
+            Assert.assertEquals("Индексы не совпадают", IS_MOVE, isActualMove);
         }
     }
 }
