@@ -14,25 +14,22 @@ import praktikum.IngredientType;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.anyInt;
-
 @RunWith(Parameterized.class)
 public class BurgerAddIngredientsTest {
-    int sizeIngredientMassive;
-    boolean isAdd;
+    private int sizeIngredientMassive;
+    private final boolean IS_ADD = true;
     @Mock
     Database data;
 
-    public BurgerAddIngredientsTest(int size, boolean isAdd) {
+    public BurgerAddIngredientsTest(int size) {
         this.sizeIngredientMassive = size;
-        this.isAdd = isAdd;
     }
 
-    @Parameterized.Parameters(name = "Добавлен ингредиент в массив размером {0} - {1}")
+    @Parameterized.Parameters(name = "Добавлен ингредиент в массив размером {0}")
     public static Object[][] addIngredientsTest() {
         return new Object[][]{
-                {0, true},
-                {1, true},
+                {0},
+                {1},
         };
     }
     @Before
@@ -53,11 +50,11 @@ public class BurgerAddIngredientsTest {
                 burger.addIngredient(ingredientTest);
             }
             boolean isActualAdd = (sizeIngredientMassive + 1 == burger.ingredients.size());
-            Assert.assertEquals("size massive different", isAdd, isActualAdd);
+            Assert.assertEquals("size massive different", IS_ADD, isActualAdd);
         } else {
             boolean isActualAdd = false;
             System.out.println("Задан неверный размер массива");
-            Assert.assertEquals(isAdd, isActualAdd);
+            Assert.assertEquals(IS_ADD, isActualAdd);
         }
     }
 }
